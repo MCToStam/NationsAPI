@@ -17,44 +17,36 @@ Une interface de programmation simple pour accéder à l'API publique de Nations
 
 
 # Préréquis
-- Disposer d'un jeton API valide. Vous pouvez en obtenir un en contactant NationsGlory à l'adresse suivante [gestion@nationsglory.fr](mailto:gestion@nationsglory.fr).
-    - *Petit conseil : essayez de décrire votre projet et ne demandez pas un jeton simplement pour en avoir un.*
-
+- Disposer une clé API. Vous pouvez en obtenir une en créant un compte sur le  [readme de NationsGlory](https://nationsglory.readme.io/reference/intro/getting-started).
 # Installation
 
 ```bash
 npm install nationsapi
 ```
 Utilisation
-javascript
 ```javascript
 const NationsAPI = require('nationsapi');
-const api = new NationsAPI('YOUR_API_TOKEN');
+const ngApi = new NationsAPI('API_KEY');
 
-// Obtenir le nombre de joueurs
-api.getPlayersCount().then(data => console.log(data));
+// Récupérer le nombre de joueurs actuel
+ngApi.server.getPlayersCount().then((data) => {
+    console.log(data);
+}).catch((error) => {
+    console.error(error);
+});
 
-// Obtenir des notations
-api.getNotations(week, country, server).then(data => console.log(data));
+// Récupérer des informations sur un joueur 
+ngApi.user.get('baba_33_mrt').then((data) => {
+    console.log(data);
+}).catch((error) => {
+    console.error(error);
+});
 
-// ... (et ainsi de suite pour les autres méthodes)
-// Remarque : n'oubliez pas de remplacer 'YOUR_API_TOKEN' par votre véritable jeton API.
+// Il est fortement recommandé de stocker les
+// clés d'API dans un fichier .env
 ```
 ## Méthodes
-- `getPlayersCount()`
-<br>Renvoie le nombre actuel de joueurs.
-
-- `getNotations(week?, country?, server)`
-<br>Obtient les notations pour une semaine donnée, un pays et un serveur. Si aucun paramètre n'est fourni, la semaine par défaut est calculée en fonction de la date actuelle.
-
-- `getPlanning(server, month, year)`
-<br>Obtient les informations de planification pour un serveur, un mois et une année spécifiques.
-
-- `getUser(username)`
-<br>Récupère les informations sur un utilisateur spécifique.
-
-- `getCountry(server, country)`
-<br>Récupère les informations sur un pays spécifique pour un serveur donné.
+Meri de regarder la page [Wiki]("https://github.com/baba33mrt/NationsAPI/wiki/methods") pour plus d'informations sur les méthodes disponibles.
 
 ## Gestion des erreurs
 Toutes les méthodes renvoient une promesse. En cas d'échec de la requête, un objet d'erreur est renvoyé avec un champ error.
