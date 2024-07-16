@@ -16,8 +16,14 @@ class CountryAPI {
     }
 
     async get(server, country) {
-        if (typeof server !== 'string' || typeof country !== 'string') throw new Error('Invalid server or country');
+        if (typeof server !== 'string') throw new Error('Invalid');
+        if (typeof country !== 'string') throw new Error('Invalidcountry');
         return makeRequest(this.apiToken, 'GET', `country/${server}/${country}`);
+    }
+
+    async get(server) {
+        if (typeof server !== 'string') throw new Error('Invalid server');
+        return makeRequest(this.apiToken, 'GET', `country/list/{server}`);
     }
 }
 
