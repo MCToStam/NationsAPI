@@ -5,7 +5,6 @@ const UserAPI = require('./api/user');
 const NgIslandAPI = require('./api/ngisland');
 const NabotAPI = require('./api/nabot');
 const WebhooksAPI = require('./api/webhooks');
-const HdvAPI = require('./api/hdv');
 
 class NationsAPI {
     constructor(apiToken) {
@@ -18,7 +17,6 @@ class NationsAPI {
         this.nabot= new NabotAPI(apiToken);
         this.nabotInstance = this.createNabotAPIClass();
         this.webhooks = new WebhooksAPI(apiToken);
-        this.hdv = new HdvAPI(apiToken);
     }
 
     createNabotAPIClass() {
